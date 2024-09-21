@@ -3,14 +3,14 @@ BUNDLE_SIDE = "right"
 SLEEP_UNIT = 1
 
 -- Bundle color definitions
-X_SHAFT_DIRECTION = colors.cyan
+GLOBAL_SHAFT_DIRECTION = colors.cyan -- Increasing when active
+
 X_SHAFT_STOP = colors.yellow
+Y_SHAFT_STOP = colors.brown
+
+ROPE_DIRECTION = colors.magenta
 
 Y_SHAFT_AT_END = colors.red
-Y_SHAFT_DIRECTION = colors.green
-Y_SHAFT_STOP = colors.magenta
-
-ROPE_DIRECTION = colors.brown
 
 -- Global Position variables
 X_LENGTH = 7
@@ -30,7 +30,7 @@ end
 -- X Controls
 
 function incrementX()
-    set(X_SHAFT_DIRECTION)
+    set(GLOBAL_SHAFT_DIRECTION)
     sleep(SLEEP_UNIT)
     set(X_SHAFT_STOP)
     GLOBAL_X = GLOBAL_X + 1
@@ -46,7 +46,7 @@ end
 -- Y Controls
 
 function incrementY()
-    set(X_SHAFT_STOP + Y_SHAFT_DIRECTION)
+    set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
     while (not get(Y_SHAFT_AT_END)) do
         sleep(SLEEP_UNIT)
     end
