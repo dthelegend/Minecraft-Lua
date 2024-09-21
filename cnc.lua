@@ -52,7 +52,7 @@ function incrementY()
     set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION + OBSERVER_ACTIVATE)
     while (not get(Y_SHAFT_AT_END)) do
         sleep(SLEEP_UNIT)
-    ende
+    end
     set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
 end
 
