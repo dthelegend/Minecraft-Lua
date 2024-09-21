@@ -52,7 +52,7 @@ function incrementY()
     set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION + OBSERVER_ACTIVATE)
     while (not get(Y_SHAFT_AT_END)) do
         sleep(SLEEP_UNIT)
-    end
+    ende
     set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
 end
 
@@ -85,9 +85,14 @@ function pullRopeAllTheWayUp()
 end
 
 function ropeDown()
+    initial_direction = get(GLOBAL_SHAFT_DIRECTION)
     set(X_SHAFT_STOP + Y_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
-    sleep(SLEEP_UNIT)
-    set(X_SHAFT_STOP)
+    sleep(SLEEP_UNIT * 2)
+    if initial_direction then
+        set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
+    else
+        set(X_SHAFT_STOP)
+    end
 end
 
 -- Calibration
@@ -111,6 +116,7 @@ function main()
         incrementX()
         rollY()
     end
+    ropeDown()
     for i=1,X_LENGTH do
         decrementX()
         rollY()
