@@ -23,7 +23,7 @@ function get(in_color)
 end
 
 function set(in_color)
-    return redstone.getBundledOutput(BUNDLE_SIDE, in_color)
+    return redstone.setBundledOutput(BUNDLE_SIDE, in_color)
 end
 
 -- X Controls
@@ -32,27 +32,57 @@ function incrementX()
     set(X_SHAFT_DIRECTION)
     sleep(SLEEP_UNIT)
     set(X_SHAFT_STOP)
-    X = X + 1
+    GLOBAL_X = GLOBAL_X + 1
 end
 
 function decrementX()
     set(0)
     sleep(SLEEP_UNIT)
     set(X_SHAFT_STOP)
-    X = X - 1
+    GLOBAL_X = GLOBAL_X - 1
+end
+
+-- Y Controls
+
+function rollY()
+    if get(Y_SHAFT_AT_END1) then
+        decrementY()
+    else
+        incrementY()
+    end
+end
+
+function incrementY()
+    set(X_SHAFT_STOP + Y_SHAFT_DIRECTION)
+    while (not get(Y_SHAFT_AT_END1)) do
+        -- Nothing lol
+    end
+end
+
+function decrementY()
+    set(X_SHAFT_STOP)
+    while (not get(Y_SHAFT_AT_END0)) do
+        -- Nothing lol
+    end
 end
 
 function main()
-    for i=0,8 do
+    set(0)
+    for i=0,7 do
         incrementX()
+        rollY()
     end
-    for i=8,0 do
+    for i=0,7 do
         decrementX()
+        rollY()
     end
 
-    if X == 0 then
+    if GLOBAL_X == 0 then
         print("Success!")
     else
         print("Fail!")
     end
+    set(0)
 end
+
+main()
