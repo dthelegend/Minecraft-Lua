@@ -52,6 +52,7 @@ function incrementY()
         sleep(SLEEP_UNIT)
     end
     set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
+    sleep(SLEEP_UNIT)
 end
 
 function decrementY()
@@ -60,6 +61,7 @@ function decrementY()
         sleep(SLEEP_UNIT)
     end
     set(X_SHAFT_STOP)
+    sleep(SLEEP_UNIT)
 end
 
 function rollY()
@@ -72,8 +74,23 @@ function rollY()
     end
 end
 
+-- Rope controls
+function pullRopeAllTheWayUp()
+    set(X_SHAFT_STOP + Y_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
+    sleep(SLEEP_UNIT * 10)
+    set(X_SHAFT_STOP)
+end
+
+function ropeDown()
+    set(X_SHAFT_STOP + Y_SHAFT_STOP)
+    sleep(SLEEP_UNIT)
+    set(X_SHAFT_STOP)
+end
+
 -- Calibration
 function reset()
+    print("Pulling rope out")
+    pullRopeAllTheWayUp()
     print("Waiting for Y to reach start")
     decrementY()
     set(0)
@@ -91,6 +108,11 @@ function main()
         incrementX()
         rollY()
     end
+    for i=1,X_LENGTH do
+        decrementX()
+        rollY()
+    end
+    ropeDown()
     print("Finished mainloop")
 
     reset()
