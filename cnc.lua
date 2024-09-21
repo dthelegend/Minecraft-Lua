@@ -19,7 +19,7 @@ GLOBAL_X = 0
 -- helper functions
 
 function get(in_color)
-    return (colors.test (redstone.getBundledInput(BUNDLE_SIDE), in_color)
+    return (colors.test (redstone.getBundledInput(BUNDLE_SIDE), in_color))
 end
 
 function set(in_color)
