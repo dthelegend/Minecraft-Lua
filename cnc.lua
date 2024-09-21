@@ -15,7 +15,7 @@ OBSERVER_ACTIVATE = colors.blue
 
 -- Global Position variables
 X_LENGTH = 7
-Y_LENGTH = 7
+MAX_DEPTH = 5
 GLOBAL_X = 0
 
 -- helper functions
@@ -115,6 +115,7 @@ end
 function main()
     reset()
 
+    for i=0,MAX_DEPTH
     print("Starting mainloop")
     rollY()
     for i=1,X_LENGTH do
@@ -122,6 +123,7 @@ function main()
         rollY()
     end
     ropeDown()
+    rollY()
     for i=1,X_LENGTH do
         decrementX()
         rollY()
