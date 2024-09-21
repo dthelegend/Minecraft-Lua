@@ -7,19 +7,19 @@ function rawread()
             if param == 17 then
                 cnc.incrementY()
                 return true
-            else if param == 31 then
+            elseif param == 31 then
                 cnc.decrementY()
                 return true
-            else if param == 30 then
+            elseif param == 30 then
                 cnc.decrementX()
                 return true
-            else if param == 32 then
+            elseif param == 32 then
                 cnc.incrementX()
                 return true
-            else if param == 42 then
+            elseif param == 42 then
                 cnc.pullRopeAllTheWayUp()
                 return true
-            else if param == 57 then
+            elseif param == 57 then
                 cnc.ropeDown()
                 return true
             else
