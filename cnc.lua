@@ -6,8 +6,7 @@ SLEEP_UNIT = 1
 X_SHAFT_DIRECTION = colors.cyan
 X_SHAFT_STOP = colors.yellow
 
-Y_SHAFT_AT_END0 = colors.red
-Y_SHAFT_AT_END1 = colors.blue
+Y_SHAFT_AT_END = colors.red
 Y_SHAFT_DIRECTION = colors.green
 Y_SHAFT_STOP = colors.magenta
 
@@ -48,23 +47,23 @@ end
 
 function incrementY()
     set(X_SHAFT_STOP + Y_SHAFT_DIRECTION)
-    while (not get(Y_SHAFT_AT_END1)) do
+    while (not get(Y_SHAFT_AT_END)) do
         sleep(SLEEP_UNIT)
     end
 end
 
 function decrementY()
     set(X_SHAFT_STOP)
-    while (not get(Y_SHAFT_AT_END0)) do
+    while get(Y_SHAFT_AT_END) do
         sleep(SLEEP_UNIT)
     end
 end
 
 function rollY()
-    if get(Y_SHAFT_AT_END0) then
-        incrementY()
-    else
+    if get(Y_SHAFT_AT_END) then
         decrementY()
+    else
+        incrementY()
     end
 end
 
@@ -88,7 +87,7 @@ function main()
         rollY()
     end
     print("Finished mainloop")
-    
+
     reset()
 end
 
