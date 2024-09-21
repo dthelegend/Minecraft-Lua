@@ -115,20 +115,21 @@ end
 function main()
     reset()
 
-    for i=0,MAX_DEPTH
     print("Starting mainloop")
-    rollY()
-    for i=1,X_LENGTH do
-        incrementX()
+    for i=0,(MAX_DEPTH / 2) do
         rollY()
-    end
-    ropeDown()
-    rollY()
-    for i=1,X_LENGTH do
-        decrementX()
+        for i=1,X_LENGTH do
+            incrementX()
+            rollY()
+        end
+        ropeDown()
         rollY()
+        for i=1,X_LENGTH do
+            decrementX()
+            rollY()
+        end
+        ropeDown()
     end
-    ropeDown()
     print("Finished mainloop")
 
     reset()
