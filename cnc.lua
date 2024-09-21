@@ -61,37 +61,34 @@ function decrementY()
 end
 
 function rollY()
-    if get(Y_SHAFT_AT_END1) then
-        decrementY()
-    else
+    if get(Y_SHAFT_AT_END0) then
         incrementY()
+    else
+        decrementY()
     end
 end
 
 -- Calibration
 function reset()
+    print("Waiting for Y to reach start")
     decrementY()
     set(0)
     -- Extra long sleep just in case
+    print("Waiting for X to reach start")
     sleep(SLEEP_UNIT * X_LENGTH * 2)
 end
 
 function main()
     reset()
-    for i=0,7 do
+
+    print("Starting mainloop")
+    rollY()
+    for i=1,X_LENGTH do
         incrementX()
         rollY()
     end
-    for i=0,7 do
-        decrementX()
-        rollY()
-    end
-
-    if GLOBAL_X == 0 then
-        print("Success!")
-    else
-        print("Fail!")
-    end
+    print("Finished mainloop")
+    
     reset()
 end
 
