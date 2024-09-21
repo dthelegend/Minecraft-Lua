@@ -44,6 +44,20 @@ end
 
 -- Y Controls
 
+function incrementY()
+    set(X_SHAFT_STOP + Y_SHAFT_DIRECTION)
+    while (not get(Y_SHAFT_AT_END1)) do
+        sleep(SLEEP_UNIT)
+    end
+end
+
+function decrementY()
+    set(X_SHAFT_STOP)
+    while (not get(Y_SHAFT_AT_END0)) do
+        sleep(SLEEP_UNIT)
+    end
+end
+
 function rollY()
     if get(Y_SHAFT_AT_END1) then
         decrementY()
@@ -52,22 +66,13 @@ function rollY()
     end
 end
 
-function incrementY()
-    set(X_SHAFT_STOP + Y_SHAFT_DIRECTION)
-    while (not get(Y_SHAFT_AT_END1)) do
-        -- Nothing lol
-    end
-end
-
-function decrementY()
-    set(X_SHAFT_STOP)
-    while (not get(Y_SHAFT_AT_END0)) do
-        -- Nothing lol
-    end
-end
+-- Calibration
+function reset()
+    decrementY()
+    set(0)
 
 function main()
-    set(0)
+    reset()
     for i=0,7 do
         incrementX()
         rollY()
@@ -82,7 +87,7 @@ function main()
     else
         print("Fail!")
     end
-    set(0)
+    reset()
 end
 
 main()
