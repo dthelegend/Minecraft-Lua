@@ -14,6 +14,8 @@ Y_SHAFT_STOP = colors.magenta
 ROPE_DIRECTION = colors.brown
 
 -- Global Position variables
+X_LENGTH = 7
+Y_LENGTH = 7
 GLOBAL_X = 0
 
 -- helper functions
@@ -70,6 +72,9 @@ end
 function reset()
     decrementY()
     set(0)
+    -- Extra long sleep just in case
+    sleep(SLEEP_UNIT * X_LENGTH * 2)
+end
 
 function main()
     reset()
