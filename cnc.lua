@@ -11,6 +11,7 @@ Y_SHAFT_STOP = colors.brown
 ROPE_DIRECTION = colors.magenta
 
 Y_SHAFT_AT_END = colors.red
+OBSERVER_ACTIVATE = colors.blue
 
 -- Global Position variables
 X_LENGTH = 7
@@ -46,17 +47,19 @@ end
 -- Y Controls
 
 function incrementY()
-    set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
+    set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION + OBSERVER_ACTIVATE)
     while (not get(Y_SHAFT_AT_END)) do
         sleep(SLEEP_UNIT)
     end
+    set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
 end
 
 function decrementY()
-    set(X_SHAFT_STOP)
+    set(X_SHAFT_STOP + OBSERVER_ACTIVATE)
     while get(Y_SHAFT_AT_END) do
         sleep(SLEEP_UNIT)
     end
+    set(X_SHAFT_STOP)
 end
 
 function rollY()
