@@ -85,7 +85,7 @@ function pullRopeAllTheWayUp()
 end
 
 function ropeDown()
-    initial_direction = get(GLOBAL_SHAFT_DIRECTION)
+    initial_direction = get(Y_SHAFT_AT_END)
     set(X_SHAFT_STOP + Y_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
     sleep(SLEEP_UNIT * 2)
     if initial_direction then
