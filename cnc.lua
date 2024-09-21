@@ -61,8 +61,10 @@ end
 
 function rollY()
     if get(Y_SHAFT_AT_END) then
+        print("rolling is decrementing")
         decrementY()
     else
+        print("rolling is incrementing")
         incrementY()
     end
 end
