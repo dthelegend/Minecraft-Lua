@@ -1,14 +1,13 @@
 -- Global Constants
 BUNDLE_SIDE = "right"
 SLEEP_UNIT = 1
+POLL_UNIT = 0.8
 
 -- Bundle color definitions
 GLOBAL_SHAFT_DIRECTION = colors.cyan -- Increasing when active
 
 X_SHAFT_STOP = colors.yellow
 Y_SHAFT_STOP = colors.brown
-
-ROPE_DIRECTION = colors.magenta
 
 Y_SHAFT_AT_END = colors.red
 OBSERVER_ACTIVATE = colors.blue
@@ -51,7 +50,7 @@ function incrementY()
     sleep(SLEEP_UNIT)
     set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION + OBSERVER_ACTIVATE)
     while (not get(Y_SHAFT_AT_END)) do
-        sleep(SLEEP_UNIT)
+        sleep(POLL_UNIT)
     end
     set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
 end
@@ -61,10 +60,9 @@ function decrementY()
     sleep(SLEEP_UNIT)
     set(X_SHAFT_STOP + OBSERVER_ACTIVATE)
     while get(Y_SHAFT_AT_END) do
-        sleep(SLEEP_UNIT)
+        sleep(POLL_UNIT)
     end
     set(X_SHAFT_STOP)
-    sleep(SLEEP_UNIT)
 end
 
 function rollY()
