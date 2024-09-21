@@ -1,7 +1,7 @@
 -- Global Constants
 BUNDLE_SIDE = "right"
-SLEEP_UNIT = 1
-POLL_UNIT = 0.8
+SLEEP_UNIT = 0.5
+POLL_UNIT = 0.5
 
 -- Bundle color definitions
 GLOBAL_SHAFT_DIRECTION = colors.cyan -- Increasing when active
@@ -13,8 +13,8 @@ Y_SHAFT_AT_END = colors.red
 OBSERVER_ACTIVATE = colors.blue
 
 -- Global Position variables
-X_LENGTH = 7
-MAX_DEPTH = 5
+X_LENGTH = 8
+MAX_DEPTH = 64
 GLOBAL_X = 0
 
 -- helper functions
@@ -77,9 +77,9 @@ end
 
 -- Rope controls
 function pullRopeAllTheWayUp()
-    initial_direction = get(Y_SHAFT_AT_END)
+    local initial_direction = get(Y_SHAFT_AT_END)
     set(X_SHAFT_STOP + Y_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
-    sleep(SLEEP_UNIT * 10)
+    sleep(SLEEP_UNIT * MAX_DEPTH)
     if initial_direction then
         set(X_SHAFT_STOP + GLOBAL_SHAFT_DIRECTION)
     else
@@ -88,7 +88,7 @@ function pullRopeAllTheWayUp()
 end
 
 function ropeDown()
-    initial_direction = get(Y_SHAFT_AT_END)
+    local initial_direction = get(Y_SHAFT_AT_END)
     set(X_SHAFT_STOP + Y_SHAFT_STOP)
     sleep(SLEEP_UNIT)
     if initial_direction then
@@ -111,8 +111,6 @@ function reset()
 end
 
 function main()
-    reset()
-
     print("Starting mainloop")
     for i=0,(MAX_DEPTH / 2) do
         rollY()
@@ -132,5 +130,3 @@ function main()
 
     reset()
 end
-
-main()
