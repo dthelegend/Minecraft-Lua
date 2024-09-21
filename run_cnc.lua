@@ -1,3 +1,3 @@
-os.loadAPI("cnc")
+os.loadAPI("cnc.lua")
 
 cnc.main()
