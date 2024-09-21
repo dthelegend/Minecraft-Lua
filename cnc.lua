@@ -32,14 +32,14 @@ function incrementX()
     set(X_SHAFT_DIRECTION)
     sleep(SLEEP_UNIT)
     set(X_SHAFT_STOP)
-    X += 1
+    X = X + 1
 end
 
 function decrementX()
     set(0)
     sleep(SLEEP_UNIT)
     set(X_SHAFT_STOP)
-    X -= 1
+    X = X - 1
 end
 
 function main()
